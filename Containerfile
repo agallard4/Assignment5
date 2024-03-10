@@ -1,6 +1,6 @@
 FROM alpine:latest AS builder
-RUN apk --no-cache add build-base
-COPY data.txt /tmp
+WORKDIR /app
+COPY data.tx .
 
 FROM fedora AS final
-COPY source2.cpp source.cpp
+COPY --from+builder /app/data.txt /data.txt
